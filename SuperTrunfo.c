@@ -4,22 +4,23 @@
 
 // REVISAR O CODIGO
 
-//  REVISAR CODIGO - MUITA COISA COPIADA DO CHAT GPT
-
-// ENTENDER AS FUNÇÕES E O PORQUE DELAS
+// ENTENDER AS FUNÇÕES E O PORQUE DELAS e comentar
 
 // ADICIONAR COMENTARIOS NO CODIGO
 
+
+// Protótipo das funções
 void MenuPrincipal();
 void MenuAtributos();
 void ConfigDaCarta();
 void CriarCarta();
 void MostrarCartaConfig();
 
+// estrutura da carta
 struct Carta {
     
     char cidade[100];
-    char estado[4]; // çembrar que: [] dentro tem q ter mais 1 espaço para o \n deixado
+    char estado[4]; // lembrar q espaço para o \n
     
     int codigo;
     int populacao;
@@ -28,34 +29,12 @@ struct Carta {
     float area;
     float pib;
     float pibpercapita;
-
 };
 
+// Carta pré-configurada
 void CartaPreConfig(struct Carta cartas[]) {
-/*
-    printf("----- Dados da carta 1 -----\n");
-    printf("**Código: 01\n");
-    printf("Estado: SP\n");
-    printf("Cidade: São Paulo\n");
-    printf("População: 123.000.000\n");
-    printf("Número de Pontos Turísticos: 100\n");
-    printf("Área (km²): 1.521\n");
-    printf("PIB: R$2B\n");
-    printf("PIB per capita: R$16.000\n");
-    printf("-------------------------\n\n");
-    
-    printf("----- Dados da carta 2 -----\n");
-    printf("**Código: 02\n");
-    printf("Estado: PR\n");
-    printf("Cidade: Curitiba\n");
-    printf("População: 50.000.000\n");
-    printf("Número de Pontos Turísticos: 43\n");
-    printf("Área (km²): 954\n");
-    printf("PIB: R$400M\n");
-    printf("PIB per capita: R$8.000\n");
-    printf("-------------------------\n");
-*/
 
+    // Carta 1
     cartas[0].codigo = 1;
     strcpy(cartas[0].estado, "SP");
     strcpy(cartas[0].cidade, "São Paulo");
@@ -74,6 +53,7 @@ void CartaPreConfig(struct Carta cartas[]) {
     cartas[1].pib = 400.0; // em milhões
 }
 
+// loop para criação de quantidade de cartas
 void LoopConfigDaCarta(struct Carta cartas[], int numero) {
     
     for (int i = 0; i < numero; i++){
@@ -81,6 +61,7 @@ void LoopConfigDaCarta(struct Carta cartas[], int numero) {
     }
 }
 
+// Configurando a carta manualmente - Usuário / Jogador
 void ConfigDaCarta(struct Carta *carta, int numero) {
 
     printf("---- Insira os dados da carta %d ----\n\n", numero);
@@ -113,7 +94,7 @@ void ConfigDaCarta(struct Carta *carta, int numero) {
     getchar();
 
 }
-
+// loop de 'X'vezes para mostrar as cartas, conforme quantidade de cartas
 void LoopMostrarCartaConfig(struct Carta *carta, int quantidade){
 
     for (int i = 0; i < quantidade; i++) {
@@ -121,6 +102,7 @@ void LoopMostrarCartaConfig(struct Carta *carta, int quantidade){
     }
 }
 
+// Estrutura da mostragem da carta 
 void MostrarCartaConfig(struct Carta *carta, int numerocarta) {
 
     printf("\n----- Dados da carta %d-----\n\n", numerocarta);
@@ -134,6 +116,7 @@ void MostrarCartaConfig(struct Carta *carta, int numerocarta) {
     printf("-------------------------\n");
 }
 
+// switch para comparar os atributos 
 int Atributos(struct Carta *carta1, struct Carta *carta2, int atributo){
 
     switch (atributo) {
@@ -150,18 +133,20 @@ int Atributos(struct Carta *carta1, struct Carta *carta2, int atributo){
     }
 }
 
+// condição 'if-else' para determinar o vencedor da comparação de atributos 
 void MostrarVencedor(int resultado, int numeroCarta1, int numeroCarta2) {
-    if (resultado == 1) {
+    if (resultado == 1) { // retornou 1 no int Atributos()
         printf("Carta %d venceu!\n", numeroCarta1);
-    } else if (resultado == 2) {
+    } else if (resultado == 2) { // retornou 2 na função int Atributos
         printf("Carta %d venceu!\n", numeroCarta2);
-    } else if (resultado == 0) {
+    } else if (resultado == 0) {// retornou 0 na função int Atributos
         printf("Empate entre as cartas %d e %d!\n", numeroCarta1, numeroCarta2);
     } else {
         printf("Resultado inválido!\n");
     }
 }
 
+// Estrutura do Menu dos Atributos
 void MenuAtributos(struct Carta carta[], int quantidade){
 
     int atributo;
@@ -188,6 +173,7 @@ void MenuAtributos(struct Carta carta[], int quantidade){
     MostrarVencedor(resultado, 1, 2);
 }
 
+// estrutura do Menu de Cartas  
 void MenuCartas() {
 
     int opcaocarta;
@@ -205,7 +191,7 @@ void MenuCartas() {
         if (opcaocarta <= 0 || opcaocarta >= 4) {
             printf("\n**Digite uma opção válida!**\n\n");
         }
-    } while (opcaocarta <= 0 || opcaocarta >= 4);
+    } while (opcaocarta <= 0 || opcaocarta >= 4); // caso digite um numero inválido, repete operação toda
 
     switch (opcaocarta){
         case 1:
@@ -218,7 +204,6 @@ void MenuCartas() {
             int cartasConfiguradas = 2;
             LoopMostrarCartaConfig(carta, 2);
             MenuAtributos(carta, 2);
-
             break;
         case 3:
             MenuPrincipal();
@@ -228,6 +213,7 @@ void MenuCartas() {
         }
 }
 
+// Estrutura do Menu Principal do Jogo
 void MenuPrincipal() {
 
     int opcao;
