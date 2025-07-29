@@ -2,11 +2,7 @@
 #include <stdlib.h> 
 #include <string.h>
 
-// REVISAR O CODIGO
-
-// ENTENDER AS FUNÇÕES E O PORQUE DELAS e comentar
-
-// ADICIONAR COMENTARIOS NO CODIGO
+// REvisar codigo para aperfeicoamento.
 
 
 // Protótipo das funções
